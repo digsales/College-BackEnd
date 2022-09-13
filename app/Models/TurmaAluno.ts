@@ -6,10 +6,10 @@ export default class TurmaAluno extends BaseModel {
   public id: number
 
   @column()
-  public turma_id: number
+  public turmaId: number
 
   @column()
-  public aluno_id: number
+  public alunoId: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

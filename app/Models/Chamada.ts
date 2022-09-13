@@ -6,10 +6,10 @@ export default class Chamada extends BaseModel {
   public id: number
 
   @column()
-  public aula_id: number
+  public aulaId: number
 
   @column()
-  public aluno_id: number
+  public alunoId: number
 
   @column()
   public presenca: string

@@ -1,0 +1,41 @@
+{
+  "name": "revisao",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ace serve --watch",
+    "build": "node ace build --production",
+    "start": "node server.js",
+    "lint": "eslint . --ext=.ts"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptApp"
+    ]
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "devDependencies": {
+    "@adonisjs/assembler": "^5.8.1",
+    "@japa/preset-adonis": "^1.1.1",
+    "@japa/runner": "^2.1.1",
+    "adonis-preset-ts": "^2.1.0",
+    "eslint": "^8.23.0",
+    "eslint-plugin-adonis": "^2.1.0",
+    "pino-pretty": "^9.1.0",
+    "typescript": "~4.6",
+    "youch": "^3.2.1",
+    "youch-terminal": "^2.1.5"
+  },
+  "dependencies": {
+    "@adonisjs/core": "^5.8.6",
+    "@adonisjs/lucid": "^18.1.1",
+    "@adonisjs/repl": "^3.1.11",
+    "luxon": "^3.0.3",
+    "proxy-addr": "^2.0.7",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.21",
+    "sqlite3": "^5.0.11"
+  }
+}

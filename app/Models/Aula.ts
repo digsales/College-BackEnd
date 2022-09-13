@@ -6,13 +6,14 @@ export default class Aula extends BaseModel {
   public id: number
 
   @column()
+  public turmaId: number
+
+  @column()
   public data: string
 
   @column()
   public conteudo: string
 
-  @column()
-  public turma_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

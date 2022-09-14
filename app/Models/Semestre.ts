@@ -9,10 +9,10 @@ export default class Semestre extends BaseModel {
   public nome: string
 
   @column()
-  public dataInicio: string
+  public dataInicio: Date
 
   @column()
-  public dataFim: string
+  public dataFim: Date
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

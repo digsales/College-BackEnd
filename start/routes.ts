@@ -24,6 +24,7 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get('/rota1', async () => {
-  return {rota : 'rota1'}
-})
+Route.group(() => {
+  Route.get('/lista', 'CursosController.index')
+  Route.post('/cadastro', 'CursosController.store')
+}).prefix('/cursos')

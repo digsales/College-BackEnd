@@ -1,14 +1,14 @@
-import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Sala from 'App/Models/Sala'
+import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
+import Sala from "App/Models/Sala";
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     await Sala.createMany([
       {
-        nome: 'AA2',
+        nome: "AA2",
         capacidade: 59,
-        tipo: 'Laboratório'
+        tipo: "Laboratório",
       },
-    ])
+    ]);
   }
 }

@@ -1,14 +1,14 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Curso from "App/Models/Curso";
+import Disciplina from "App/Models/Disciplina";
 
-export default class CursosController {
+export default class DisciplinasController {
   index() {
-    return Curso.all();
+    return Disciplina.all();
   }
 
   store({ request }) {
     const dados = request.only(["nome", "curso_id"]);
-    return Curso.create(dados);
+    return Disciplina.create(dados);
   }
 }

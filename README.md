@@ -103,8 +103,8 @@ export default class Curso extends BaseModel {
 ### Voltar as Migration
 
     node ace migration:rollback
-    ou
     node ace migration:refresh
+    node ace migration:refresh --seed
 
 ### Voltar as Migration ao início
 

@@ -1,4 +1,4 @@
-# `AdonisJS`.
+# `AdonisJS`
 
 ### Iniciar um projeto.
 

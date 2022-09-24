@@ -1,6 +1,4 @@
-# Concessionária
-
-## Meu estudo sobre `AdonisJS`.
+# `AdonisJS`.
 
 ### Iniciar um projeto.
 

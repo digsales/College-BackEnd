@@ -11,4 +11,17 @@ export default class ChamadasController {
     const dados = request.only(["aula_id", "aluno_id", "presenca"]);
     return Chamada.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Chamada.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const chamada = await Chamada.findOrFail(id);
+    return chamada.delete();
+  }
+
+  update({ request }) {}
 }

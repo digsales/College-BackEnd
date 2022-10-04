@@ -11,4 +11,17 @@ export default class SalasController {
     const dados = request.only(["nome", "capacidade", "tipo"]);
     return Sala.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Sala.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const sala = await Sala.findOrFail(id);
+    return sala.delete();
+  }
+
+  update({ request }) {}
 }

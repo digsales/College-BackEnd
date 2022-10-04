@@ -11,4 +11,17 @@ export default class TurmaAlunosController {
     const dados = request.only(["turma_id", "aluno_id"]);
     return TurmaAluno.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return TurmaAluno.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const turmaAluno = await TurmaAluno.findOrFail(id);
+    return turmaAluno.delete();
+  }
+
+  update({ request }) {}
 }

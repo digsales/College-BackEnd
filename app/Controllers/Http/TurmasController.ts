@@ -18,4 +18,17 @@ export default class TurmasController {
     ]);
     return Turma.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Turma.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const turma = await Turma.findOrFail(id);
+    return turma.delete();
+  }
+
+  update({ request }) {}
 }

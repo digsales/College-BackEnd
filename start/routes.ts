@@ -24,52 +24,22 @@ Route.get("/", async () => {
   return { hello: "world" };
 });
 
-Route.group(() => {
-  Route.get("/lista", "AlunosController.index");
-  Route.post("/cadastro", "AlunosController.store");
-}).prefix("/alunos");
+Route.resource("/alunos", "AlunosController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "CursosController.index");
-  Route.post("/cadastro", "CursosController.store");
-}).prefix("/cursos");
+Route.resource("/cursos", "CursosController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "DisciplinasController.index");
-  Route.post("/cadastro", "DisciplinasController.store");
-}).prefix("/disciplinas");
+Route.resource("/disciplinas", "DisciplinasController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "ProfessoresController.index");
-  Route.post("/cadastro", "ProfessoresController.store");
-}).prefix("/professores");
+Route.resource("/professores", "ProfessoresController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "SalasController.index");
-  Route.post("/cadastro", "SalasController.store");
-}).prefix("/salas");
+Route.resource("/salas", "SalasController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "SemestresController.index");
-  Route.post("/cadastro", "SemestresController.store");
-}).prefix("/semestres");
+Route.resource("/semestre", "SemestresController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "TurmasController.index");
-  Route.post("/cadastro", "TurmasController.store");
-}).prefix("/turmas");
+Route.resource("/turmas", "TurmasController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "AulasController.index");
-  Route.post("/cadastro", "AulasController.store");
-}).prefix("/aulas");
+Route.resource("/aulas", "AulasController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "ChamadasController.index");
-  Route.post("/cadastro", "ChamadasController.store");
-}).prefix("/chamadas");
+Route.resource("/chamadas", "ChamadasController").apiOnly();
 
-Route.group(() => {
-  Route.get("/lista", "TurmaAlunosController.index");
-  Route.post("/cadastro", "TurmaAlunosController.store");
-}).prefix("/turmaAlunos");
+Route.resource("/turmaAlunos", "TurmaAlunosController").apiOnly();

@@ -11,4 +11,17 @@ export default class CursosController {
     const dados = request.only(["nome", "curso_id"]);
     return Curso.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Curso.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const curso = await Curso.findOrFail(id);
+    return curso.delete();
+  }
+
+  update({ request }) {}
 }

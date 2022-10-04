@@ -22,4 +22,17 @@ export default class AlunosController {
     ]);
     return Aluno.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Aluno.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const aluno = await Aluno.findOrFail(id);
+    return aluno.delete();
+  }
+
+  update({ request }) {}
 }

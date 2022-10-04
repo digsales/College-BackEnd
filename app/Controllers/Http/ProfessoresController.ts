@@ -23,4 +23,17 @@ export default class ProfessoresController {
     ]);
     return Professor.create(dados);
   }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Professor.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const professor = await Professor.findOrFail(id);
+    return professor.delete();
+  }
+
+  update({ request }) {}
 }

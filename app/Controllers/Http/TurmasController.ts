@@ -30,5 +30,21 @@ export default class TurmasController {
     return turma.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const turma = await Turma.findOrFail(id);
+
+    const dados = request.only([
+      "nome",
+      "professor_id",
+      "semestre_id",
+      "disciplina_id",
+      "sala_id",
+      "turno",
+    ]);
+
+    turma.merge(dados).save();
+
+    return turma;
+  }
 }

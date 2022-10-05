@@ -23,5 +23,14 @@ export default class DisciplinasController {
     return disciplina.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const disciplina = await Disciplina.findOrFail(id);
+
+    const dados = request.only(["nome", "curso_id"]);
+
+    disciplina.merge(dados).save();
+
+    return disciplina;
+  }
 }

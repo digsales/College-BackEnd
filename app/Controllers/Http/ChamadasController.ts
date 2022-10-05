@@ -23,5 +23,14 @@ export default class ChamadasController {
     return chamada.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const chamada = await Chamada.findOrFail(id);
+
+    const dados = request.only(["aula_id", "aluno_id", "presenca"]);
+
+    chamada.merge(dados).save();
+
+    return chamada;
+  }
 }

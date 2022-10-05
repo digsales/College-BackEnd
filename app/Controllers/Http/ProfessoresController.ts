@@ -35,5 +35,26 @@ export default class ProfessoresController {
     return professor.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const professor = await Professor.findOrFail(id);
+
+    const dados = request.only([
+      "nome",
+      "cpf",
+      "matricula",
+      "salario",
+      "email",
+      "telefone",
+      "cep",
+      "logradouro",
+      "complemento",
+      "numero",
+      "bairro",
+    ]);
+
+    professor.merge(dados).save();
+
+    return professor;
+  }
 }

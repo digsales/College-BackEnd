@@ -23,5 +23,14 @@ export default class AulasController {
     return aula.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const aulas = await Aula.findOrFail(id);
+
+    const dados = request.only(["turma_id", "data", "conteudo"]);
+
+    aulas.merge(dados).save();
+
+    return aulas;
+  }
 }

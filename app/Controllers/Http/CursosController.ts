@@ -23,5 +23,14 @@ export default class CursosController {
     return curso.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const curso = await Curso.findOrFail(id);
+
+    const dados = request.only(["nome", "curso_id"]);
+
+    curso.merge(dados).save();
+
+    return curso;
+  }
 }

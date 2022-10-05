@@ -23,5 +23,14 @@ export default class SemestresController {
     return semestre.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const semestre = await Semestre.findOrFail(id);
+
+    const dados = request.only(["nome", "data_inicio", "data_fim"]);
+
+    semestre.merge(dados).save();
+
+    return semestre;
+  }
 }

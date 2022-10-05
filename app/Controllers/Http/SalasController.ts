@@ -23,5 +23,14 @@ export default class SalasController {
     return sala.delete();
   }
 
-  update({ request }) {}
+  async update({ request }) {
+    const id = request.param("id");
+    const sala = await Sala.findOrFail(id);
+
+    const dados = request.only(["nome", "capacidade", "tipo"]);
+
+    sala.merge(dados).save();
+
+    return sala;
+  }
 }

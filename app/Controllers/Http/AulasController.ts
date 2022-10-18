@@ -4,11 +4,11 @@ import Aula from "App/Models/Aula";
 
 export default class AulasController {
   index() {
-    return Aula.all();
+    return Aula.query();
   }
 
   store({ request }) {
-    const dados = request.only(["turma_id", "data", "conteudo"]);
+    const dados = request.only(["turmaId", "data", "conteudo"]);
     return Aula.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class AulasController {
     const id = request.param("id");
     const aulas = await Aula.findOrFail(id);
 
-    const dados = request.only(["turma_id", "data", "conteudo"]);
+    const dados = request.only(["turmaId", "data", "conteudo"]);
 
     aulas.merge(dados).save();
 

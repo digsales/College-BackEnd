@@ -4,7 +4,7 @@ import Sala from "App/Models/Sala";
 
 export default class SalasController {
   index() {
-    return Sala.all();
+    return Sala.query();
   }
 
   store({ request }) {

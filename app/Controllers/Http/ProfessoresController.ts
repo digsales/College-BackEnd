@@ -4,7 +4,7 @@ import Professor from "App/Models/Professor";
 
 export default class ProfessoresController {
   index() {
-    return Professor.all();
+    return Professor.query();
   }
 
   store({ request }) {

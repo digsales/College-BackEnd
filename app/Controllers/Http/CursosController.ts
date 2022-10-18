@@ -4,11 +4,11 @@ import Curso from "App/Models/Curso";
 
 export default class CursosController {
   index() {
-    return Curso.all();
+    return Curso.query();
   }
 
   store({ request }) {
-    const dados = request.only(["nome", "curso_id"]);
+    const dados = request.only(["nome", "cursoId"]);
     return Curso.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class CursosController {
     const id = request.param("id");
     const curso = await Curso.findOrFail(id);
 
-    const dados = request.only(["nome", "curso_id"]);
+    const dados = request.only(["nome", "cursoId"]);
 
     curso.merge(dados).save();
 

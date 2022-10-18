@@ -4,7 +4,7 @@ import Aluno from "App/Models/Aluno";
 
 export default class AlunosController {
   index() {
-    return Aluno.all();
+    return Aluno.query();
   }
 
   store({ request }) {

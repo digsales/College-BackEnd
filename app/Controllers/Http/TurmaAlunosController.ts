@@ -4,11 +4,11 @@ import TurmaAluno from "App/Models/TurmaAluno";
 
 export default class TurmaAlunosController {
   index() {
-    return TurmaAluno.all();
+    return TurmaAluno.query();
   }
 
   store({ request }) {
-    const dados = request.only(["turma_id", "aluno_id"]);
+    const dados = request.only(["turmaId", "alunoId"]);
     return TurmaAluno.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class TurmaAlunosController {
     const id = request.param("id");
     const turmaAluno = await TurmaAluno.findOrFail(id);
 
-    const dados = request.only(["nome", "data_inicio", "data_fim"]);
+    const dados = request.only(["turmaId", "alunoId"]);
 
     turmaAluno.merge(dados).save();
 

@@ -4,11 +4,11 @@ import Chamada from "App/Models/Chamada";
 
 export default class ChamadasController {
   index() {
-    return Chamada.all();
+    return Chamada.query();
   }
 
   store({ request }) {
-    const dados = request.only(["aula_id", "aluno_id", "presenca"]);
+    const dados = request.only(["aulaId", "alunoId", "presenca"]);
     return Chamada.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class ChamadasController {
     const id = request.param("id");
     const chamada = await Chamada.findOrFail(id);
 
-    const dados = request.only(["aula_id", "aluno_id", "presenca"]);
+    const dados = request.only(["aulaId", "alunoId", "presenca"]);
 
     chamada.merge(dados).save();
 

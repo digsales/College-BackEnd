@@ -4,16 +4,16 @@ import Turma from "App/Models/Turma";
 
 export default class TurmasController {
   index() {
-    return Turma.all();
+    return Turma.query();
   }
 
   store({ request }) {
     const dados = request.only([
       "nome",
-      "professor_id",
-      "semestre_id",
-      "disciplina_id",
-      "sala_id",
+      "professorId",
+      "semestreId",
+      "disciplinaId",
+      "salaId",
       "turno",
     ]);
     return Turma.create(dados);
@@ -36,10 +36,10 @@ export default class TurmasController {
 
     const dados = request.only([
       "nome",
-      "professor_id",
-      "semestre_id",
-      "disciplina_id",
-      "sala_id",
+      "professorId",
+      "semestreId",
+      "disciplinaId",
+      "salaId",
       "turno",
     ]);
 

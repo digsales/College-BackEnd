@@ -4,11 +4,11 @@ import Semestre from "App/Models/Semestre";
 
 export default class SemestresController {
   index() {
-    return Semestre.all();
+    return Semestre.query();
   }
 
   store({ request }) {
-    const dados = request.only(["nome", "data_inicio", "data_fim"]);
+    const dados = request.only(["nome", "dataInicio", "dataFim"]);
     return Semestre.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class SemestresController {
     const id = request.param("id");
     const semestre = await Semestre.findOrFail(id);
 
-    const dados = request.only(["nome", "data_inicio", "data_fim"]);
+    const dados = request.only(["nome", "dataInicio", "dataFim"]);
 
     semestre.merge(dados).save();
 

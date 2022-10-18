@@ -4,11 +4,11 @@ import Disciplina from "App/Models/Disciplina";
 
 export default class DisciplinasController {
   index() {
-    return Disciplina.all();
+    return Disciplina.query();
   }
 
   store({ request }) {
-    const dados = request.only(["nome", "curso_id"]);
+    const dados = request.only(["nome", "cursoId"]);
     return Disciplina.create(dados);
   }
 
@@ -27,7 +27,7 @@ export default class DisciplinasController {
     const id = request.param("id");
     const disciplina = await Disciplina.findOrFail(id);
 
-    const dados = request.only(["nome", "curso_id"]);
+    const dados = request.only(["nome", "cursoId"]);
 
     disciplina.merge(dados).save();
 

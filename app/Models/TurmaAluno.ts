@@ -18,10 +18,4 @@ export default class TurmaAluno extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
-
-  @belongsTo(() => Turma)
-  public turma: BelongsTo<typeof Turma>;
-
-  @belongsTo(() => Aluno)
-  public aluno: BelongsTo<typeof Aluno>;
 }

@@ -1,7 +1,5 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
-import Turma from "./Turma";
-import Aluno from "./Aluno";
+import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
 
 export default class TurmaAluno extends BaseModel {
   @column({ isPrimary: true })

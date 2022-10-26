@@ -7,7 +7,6 @@ import {
   ManyToMany,
   manyToMany,
 } from "@ioc:Adonis/Lucid/Orm";
-import TurmaAluno from "./TurmaAluno";
 import Chamada from "./Chamada";
 import Turma from "./Turma";
 

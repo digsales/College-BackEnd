@@ -13,7 +13,6 @@ import Disciplina from "./Disciplina";
 import Sala from "./Sala";
 import Professor from "./Professor";
 import Aula from "./Aula";
-import TurmaAluno from "./TurmaAluno";
 import Semestre from "./Semestre";
 import Aluno from "./Aluno";
 

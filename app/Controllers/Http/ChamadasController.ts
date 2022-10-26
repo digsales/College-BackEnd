@@ -4,7 +4,7 @@ import Chamada from "App/Models/Chamada";
 
 export default class ChamadasController {
   index() {
-    return Chamada.query();
+    return Chamada.query().preload("aulas");
   }
 
   store({ request }) {

@@ -4,7 +4,7 @@ import Disciplina from "App/Models/Disciplina";
 
 export default class DisciplinasController {
   index() {
-    return Disciplina.query();
+    return Disciplina.query().preload("cursos");
   }
 
   store({ request }) {

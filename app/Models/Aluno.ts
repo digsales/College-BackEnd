@@ -55,5 +55,5 @@ export default class Aluno extends BaseModel {
   public chamadas: HasMany<typeof Chamada>;
 
   @manyToMany(() => Turma)
-  public turma: ManyToMany<typeof Turma>;
+  public turmas: ManyToMany<typeof Turma>;
 }

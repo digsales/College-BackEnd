@@ -46,20 +46,20 @@ export default class Turma extends BaseModel {
   public updatedAt: DateTime;
 
   @belongsTo(() => Disciplina)
-  public disciplina: BelongsTo<typeof Disciplina>;
+  public disciplinas: BelongsTo<typeof Disciplina>;
 
   @belongsTo(() => Sala)
-  public sala: BelongsTo<typeof Sala>;
+  public salas: BelongsTo<typeof Sala>;
 
   @belongsTo(() => Professor)
-  public professor: BelongsTo<typeof Professor>;
+  public professores: BelongsTo<typeof Professor>;
 
   @belongsTo(() => Semestre)
-  public semestre: BelongsTo<typeof Semestre>;
+  public semestres: BelongsTo<typeof Semestre>;
 
   @hasMany(() => Aula)
   public aulas: HasMany<typeof Aula>;
 
   @manyToMany(() => Aluno)
-  public aluno: ManyToMany<typeof Aluno>;
+  public alunos: ManyToMany<typeof Aluno>;
 }

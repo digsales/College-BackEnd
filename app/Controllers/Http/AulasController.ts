@@ -4,7 +4,7 @@ import Aula from "App/Models/Aula";
 
 export default class AulasController {
   index() {
-    return Aula.query();
+    return Aula.query().preload("chamada").preload("turma");
   }
 
   store({ request }) {

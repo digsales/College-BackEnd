@@ -1,14 +1,15 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Curso from "App/Models/Curso";
+import CursoValidator from "App/Validators/CursoValidator";
 
 export default class CursosController {
   index() {
-    return Curso.query();
+    return Curso.query().select("*").preload("disciplinas");
   }
 
   store({ request }) {
-    const dados = request.only(["nome", "cursoId"]);
+    const dados = request.validate(CursoValidator);
     return Curso.create(dados);
   }
 

@@ -22,5 +22,5 @@ export default class Semestre extends BaseModel {
   public updatedAt: DateTime;
 
   @hasMany(() => Turma)
-  public aulas: HasMany<typeof Turma>;
+  public turmas: HasMany<typeof Turma>;
 }

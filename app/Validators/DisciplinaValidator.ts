@@ -6,7 +6,7 @@ export default class DisciplinaValidator {
 
   public schema = schema.create({
     cursoId: schema.number([rules.exists({ table: "cursos", column: "id" })]),
-    nome: schema.number([rules.maxLength(50)]),
+    nome: schema.string.optional([rules.maxLength(50)]),
   });
 
   public messages: CustomMessages = {};

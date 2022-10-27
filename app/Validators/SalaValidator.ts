@@ -12,5 +12,6 @@ export default class SalaValidator {
     capacidade: schema.number.optional(),
     tipo: schema.string([rules.maxLength(1)]),
   });
+
   public messages: CustomMessages = {};
 }

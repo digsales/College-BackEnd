@@ -14,7 +14,7 @@ export default class ProfessorValidator {
       rules.maxLength(20),
       rules.unique({ table: "professors", column: "matricula" }),
     ]),
-    salario: schema.string([rules.maxLength(100)]),
+    salario: schema.string.optional([rules.maxLength(100)]),
     email: schema.string.optional([
       rules.email(),
       rules.maxLength(100),

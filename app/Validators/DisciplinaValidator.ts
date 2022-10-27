@@ -5,7 +5,7 @@ export default class DisciplinaValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    cursoId: schema.number([rules.exists({ table: "aulas", column: "id" })]),
+    cursoId: schema.number([rules.exists({ table: "cursos", column: "id" })]),
     nome: schema.number([rules.maxLength(50)]),
   });
 

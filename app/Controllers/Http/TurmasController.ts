@@ -9,7 +9,9 @@ export default class TurmasController {
       .preload("professore")
       .preload("semestre")
       .preload("disciplina")
-      .preload("sala");
+      .preload("sala")
+      .preload("aula")
+      .preload("aluno");
   }
 
   async store({ request }) {

@@ -4,31 +4,31 @@ import Chamada from "App/Models/Chamada";
 import ChamadaValidator from "App/Validators/ChamadaValidator";
 
 export default class ChamadasController {
-  index() {
-    return Chamada.query().preload("aulas");
+  async index() {
+    return await Chamada.query().preload("aulas");
   }
 
-  store({ request }) {
-    const dados = request.validate(ChamadaValidator);
-    return Chamada.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(ChamadaValidator);
+    return await Chamada.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Chamada.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Chamada.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const chamada = await Chamada.findOrFail(id);
     return chamada.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const chamada = await Chamada.findOrFail(id);
 
-    const dados = request.only(["aulaId", "alunoId", "presenca"]);
+    const dados = await request.validate(ChamadaValidator);
 
     chamada.merge(dados).save();
 

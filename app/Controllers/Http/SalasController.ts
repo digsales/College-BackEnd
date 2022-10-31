@@ -4,31 +4,31 @@ import Sala from "App/Models/Sala";
 import SalaValidator from "App/Validators/SalaValidator";
 
 export default class SalasController {
-  index() {
-    return Sala.query().preload("turmas");
+  async index() {
+    return await Sala.query().preload("turmas");
   }
 
-  store({ request }) {
-    const dados = request.validate(SalaValidator);
-    return Sala.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(SalaValidator);
+    return await Sala.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Sala.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Sala.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const sala = await Sala.findOrFail(id);
     return sala.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const sala = await Sala.findOrFail(id);
 
-    const dados = request.only(["nome", "capacidade", "tipo"]);
+    const dados = await request.validate(SalaValidator);
 
     sala.merge(dados).save();
 

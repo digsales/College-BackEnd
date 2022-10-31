@@ -4,28 +4,28 @@ import Curso from "App/Models/Curso";
 import CursoValidator from "App/Validators/CursoValidator";
 
 export default class CursosController {
-  index() {
-    return Curso.query().select("*").preload("disciplinas");
+  async index() {
+    return await Curso.query().select("*").preload("disciplinas");
   }
 
-  store({ request }) {
-    const dados = request.validate(CursoValidator);
-    return Curso.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(CursoValidator);
+    return await Curso.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Curso.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Curso.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const curso = await Curso.findOrFail(id);
     return curso.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const curso = await Curso.findOrFail(id);
 
     const dados = request.only(["nome", "cursoId"]);

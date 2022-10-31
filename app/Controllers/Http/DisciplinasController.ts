@@ -4,22 +4,22 @@ import Disciplina from "App/Models/Disciplina";
 import DisciplinaValidator from "App/Validators/DisciplinaValidator";
 
 export default class DisciplinasController {
-  index() {
-    return Disciplina.query().preload("cursos");
+  async index() {
+    return await Disciplina.query().preload("cursos");
   }
 
-  store({ request }) {
-    const dados = request.validate(DisciplinaValidator);
-    return Disciplina.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(DisciplinaValidator);
+    return await Disciplina.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Disciplina.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Disciplina.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const disciplina = await Disciplina.findOrFail(id);
     return disciplina.delete();
   }
@@ -28,7 +28,7 @@ export default class DisciplinasController {
     const id = request.param("id");
     const disciplina = await Disciplina.findOrFail(id);
 
-    const dados = request.only(["nome", "cursoId"]);
+    const dados = await request.validate(DisciplinaValidator);
 
     disciplina.merge(dados).save();
 

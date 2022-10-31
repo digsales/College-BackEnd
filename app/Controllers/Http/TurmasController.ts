@@ -4,42 +4,35 @@ import Turma from "App/Models/Turma";
 import TurmaValidator from "App/Validators/TurmaValidator";
 
 export default class TurmasController {
-  index() {
-    return Turma.query()
+  async index() {
+    return await Turma.query()
       .preload("professores")
       .preload("semestres")
       .preload("disciplinas")
       .preload("salas");
   }
 
-  store({ request }) {
-    const dados = request.validate(TurmaValidator);
-    return Turma.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(TurmaValidator);
+    return await Turma.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Turma.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Turma.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const turma = await Turma.findOrFail(id);
     return turma.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const turma = await Turma.findOrFail(id);
 
-    const dados = request.only([
-      "nome",
-      "professorId",
-      "semestreId",
-      "disciplinaId",
-      "salaId",
-      "turno",
-    ]);
+    const dados = await request.validate(TurmaValidator);
 
     turma.merge(dados).save();
 

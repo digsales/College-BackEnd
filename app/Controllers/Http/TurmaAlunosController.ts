@@ -4,31 +4,31 @@ import TurmaAluno from "App/Models/TurmaAluno";
 import TurmaAlunoValidator from "App/Validators/TurmaAlunoValidator";
 
 export default class TurmaAlunosController {
-  index() {
-    return TurmaAluno.query();
+  async index() {
+    return await TurmaAluno.query();
   }
 
-  store({ request }) {
-    const dados = request.validate(TurmaAlunoValidator);
-    return TurmaAluno.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(TurmaAlunoValidator);
+    return await TurmaAluno.create(dados);
   }
 
-  show({ request }) {
+  async show({ request }) {
     const id = request.param("id");
-    return TurmaAluno.findOrFail(id);
+    return await TurmaAluno.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const turmaAluno = await TurmaAluno.findOrFail(id);
     return turmaAluno.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const turmaAluno = await TurmaAluno.findOrFail(id);
 
-    const dados = request.only(["turmaId", "alunoId"]);
+    const dados = await request.validate(TurmaAlunoValidator);
 
     turmaAluno.merge(dados).save();
 

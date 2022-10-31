@@ -4,43 +4,31 @@ import Professor from "App/Models/Professor";
 import ProfessorValidator from "App/Validators/ProfessorValidator";
 
 export default class ProfessoresController {
-  index() {
-    return Professor.query().preload("turmas");
+  async index() {
+    return await Professor.query().preload("turmas");
   }
 
-  store({ request }) {
-    const dados = request.validate(ProfessorValidator);
-    return Professor.create(dados);
+  async store({ request }) {
+    const dados = await request.validate(ProfessorValidator);
+    return await Professor.create(dados);
   }
 
-  show({ request }) {
-    const id = request.param("id");
-    return Professor.findOrFail(id);
+  async show({ request }) {
+    const id = await request.param("id");
+    return await Professor.findOrFail(id);
   }
 
   async destroy({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const professor = await Professor.findOrFail(id);
     return professor.delete();
   }
 
   async update({ request }) {
-    const id = request.param("id");
+    const id = await request.param("id");
     const professor = await Professor.findOrFail(id);
 
-    const dados = request.only([
-      "nome",
-      "cpf",
-      "matricula",
-      "salario",
-      "email",
-      "telefone",
-      "cep",
-      "logradouro",
-      "complemento",
-      "numero",
-      "bairro",
-    ]);
+    const dados = await request.validate(ProfessorValidator);
 
     professor.merge(dados).save();
 

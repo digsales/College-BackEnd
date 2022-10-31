@@ -28,7 +28,7 @@ export default class CursosController {
     const id = await request.param("id");
     const curso = await Curso.findOrFail(id);
 
-    const dados = request.only(["nome", "cursoId"]);
+    const dados = await request.validate(CursoValidator);
 
     curso.merge(dados).save();
 

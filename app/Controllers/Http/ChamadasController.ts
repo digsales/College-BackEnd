@@ -5,7 +5,7 @@ import ChamadaValidator from "App/Validators/ChamadaValidator";
 
 export default class ChamadasController {
   async index() {
-    return await Chamada.query().preload("aulas");
+    return await Chamada.query().preload("aula");
   }
 
   async store({ request }) {

@@ -30,7 +30,7 @@ export default class Aula extends BaseModel {
   public updatedAt: DateTime;
 
   @belongsTo(() => Turma)
-  public turmas: BelongsTo<typeof Turma>;
+  public turma: BelongsTo<typeof Turma>;
 
   @hasMany(() => Chamada)
   public chamadas: HasMany<typeof Chamada>;

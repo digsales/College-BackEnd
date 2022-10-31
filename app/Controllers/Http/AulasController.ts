@@ -5,7 +5,7 @@ import AulaValidator from "App/Validators/AulaValidator";
 
 export default class AulasController {
   async index() {
-    return await Aula.query().preload("chamadas").preload("turmas");
+    return await Aula.query().preload("chamadas").preload("turma");
   }
 
   async store({ request }) {

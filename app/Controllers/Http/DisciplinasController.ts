@@ -5,7 +5,7 @@ import DisciplinaValidator from "App/Validators/DisciplinaValidator";
 
 export default class DisciplinasController {
   async index() {
-    return await Disciplina.query().preload("cursos");
+    return await Disciplina.query().preload("curso");
   }
 
   async store({ request }) {

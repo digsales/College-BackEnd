@@ -6,12 +6,12 @@ import TurmaValidator from "App/Validators/TurmaValidator";
 export default class TurmasController {
   async index() {
     return await Turma.query()
-      .preload("professore")
+      .preload("professor")
       .preload("semestre")
       .preload("disciplina")
       .preload("sala")
-      .preload("aula")
-      .preload("aluno");
+      .preload("aulas")
+      .preload("alunos");
   }
 
   async store({ request }) {

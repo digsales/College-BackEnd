@@ -10,5 +10,9 @@ export default class ChamadaValidator {
     presenca: schema.string([rules.maxLength(1)]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    maxLength: "Tamanho máximo atingido",
+    exists: "Não existe este dado na tabela pai",
+  };
 }

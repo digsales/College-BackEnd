@@ -6,9 +6,12 @@ export default class SemestreValidator {
 
   public schema = schema.create({
     nome: schema.string([rules.maxLength(30)]),
-    capacidade: schema.date(),
-    tipo: schema.date(),
+    capacidade: schema.number(),
+    tipo: schema.string([rules.maxLength(1)]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    maxLength: "Tamanho máximo atingido",
+  };
 }

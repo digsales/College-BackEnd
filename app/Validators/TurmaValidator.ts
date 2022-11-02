@@ -22,5 +22,10 @@ export default class TurmaValidator {
     tipo: schema.string([rules.maxLength(1)]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    unique: "Já existe um campo {{field}} com este dado.",
+    maxLength: "Tamanho máximo atingido",
+    exists: "Não existe este dado na tabela pai",
+  };
 }

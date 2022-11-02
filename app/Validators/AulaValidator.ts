@@ -10,5 +10,8 @@ export default class AulaValidator {
     conteudo: schema.string(),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    exists: "Não existe este dado na tabela pai",
+  };
 }

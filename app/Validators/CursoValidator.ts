@@ -17,7 +17,5 @@ export default class CursoValidator {
     required: "O campo {{field}} é obrigatório.",
     unique: "Já existe um campo {{field}} com este dado.",
     maxLength: "Tamanho máximo atingido",
-    minLenght: "Tamanho mínimo atingido",
-    exists: "Não existe este dado na tabela pai",
   };
 }

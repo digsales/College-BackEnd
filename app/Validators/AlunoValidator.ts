@@ -20,7 +20,8 @@ export default class AlunoValidator {
       rules.unique({ table: "alunos", column: "email" }),
     ]),
     telefone: schema.string.optional([
-      rules.range(11, 15),
+      rules.minLength(11),
+      rules.maxLength(15),
       rules.unique({ table: "alunos", column: "telefone" }),
     ]),
     cep: schema.string.optional(),
@@ -30,5 +31,10 @@ export default class AlunoValidator {
     bairro: schema.string.optional([rules.maxLength(100)]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    unique: "Já existe um campo {{field}} com este dado.",
+    maxLength: "Tamanho máximo atingido",
+    minLenght: "Tamanho mínimo atingido",
+  };
 }

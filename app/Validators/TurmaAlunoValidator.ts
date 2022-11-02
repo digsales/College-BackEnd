@@ -9,5 +9,8 @@ export default class TurmaAlunoValidator {
     alunoId: schema.number([rules.exists({ table: "alunos", column: "id" })]),
   });
 
-  public messages: CustomMessages = {};
+  public messages: CustomMessages = {
+    required: "O campo {{field}} é obrigatório.",
+    exists: "Não existe este dado na tabela pai",
+  };
 }

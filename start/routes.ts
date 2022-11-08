@@ -24,22 +24,18 @@ Route.get("/", async () => {
   return { servidor: "ativo" };
 });
 
-Route.resource("/alunos", "AlunosController").apiOnly();
+Route.post("/store", "UsersController.store").middleware("auth");
+Route.post("/login", "UsersController.login");
 
-Route.resource("/cursos", "CursosController").apiOnly();
-
-Route.resource("/disciplinas", "DisciplinasController").apiOnly();
-
-Route.resource("/professores", "ProfessoresController").apiOnly();
-
-Route.resource("/salas", "SalasController").apiOnly();
-
-Route.resource("/semestre", "SemestresController").apiOnly();
-
-Route.resource("/turmas", "TurmasController").apiOnly();
-
-Route.resource("/aulas", "AulasController").apiOnly();
-
-Route.resource("/chamadas", "ChamadasController").apiOnly();
-
-Route.resource("/turmaAlunos", "TurmaAlunosController").apiOnly();
+Route.group(() => {
+  Route.resource("/alunos", "AlunosController").apiOnly();
+  Route.resource("/cursos", "CursosController").apiOnly();
+  Route.resource("/disciplinas", "DisciplinasController").apiOnly();
+  Route.resource("/professores", "ProfessoresController").apiOnly();
+  Route.resource("/salas", "SalasController").apiOnly();
+  Route.resource("/semestre", "SemestresController").apiOnly();
+  Route.resource("/turmas", "TurmasController").apiOnly();
+  Route.resource("/aulas", "AulasController").apiOnly();
+  Route.resource("/chamadas", "ChamadasController").apiOnly();
+  Route.resource("/turmaAlunos", "TurmaAlunosController").apiOnly();
+}).middleware("auth");

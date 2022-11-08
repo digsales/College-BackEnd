@@ -9,7 +9,9 @@ export default class UsersController {
   }
 
   async login({ request, auth }) {
-    const { email, password } = await request.body();
-    return await auth.user("api").attempt(email, password);
+    const { email, password } = request.all();
+    await auth.attempt(email, password);
+
+    return await auth.use("api").attempt(email, password);
   }
 }

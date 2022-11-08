@@ -24,7 +24,7 @@ Route.get("/", async () => {
   return { servidor: "ativo" };
 });
 
-Route.post("/store", "UsersController.store").middleware("auth");
+Route.post("/store", "UsersController.store");
 Route.post("/login", "UsersController.login");
 
 Route.group(() => {

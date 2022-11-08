@@ -1,32 +1,9 @@
-# `AdonisJS`
+# Adonis.js
 
 ### Iniciar um projeto.
 
     npm init adonis-ts-app@latest [nome]
-
-### Start o servidor de desenvolvimento.
-
-    node ace serve --watch
-
-### Criando um Controller.
-
-    node ace make:controller [Nome]
-
-### Codigo de uma rota com Controller
-```js
-import Curso from 'App/Models/Curso'
-
-export default class CursosController {
-  index () {
-    return Curso.all()
-  }
-  store ({request}){
-    const dados = request.only(['nome', 'duracao', 'modalidade'])
-    return Curso.create(dados)
-  }
-}
-```
-
+    
 ### Instalando o `lucid` para o baco de dados.
 
     npm i @adonisjs/lucid
@@ -34,6 +11,10 @@ export default class CursosController {
 ### Configurando o `lucid`.
 
     node ace configure @adonisjs/lucid
+
+### Start o servidor de desenvolvimento.
+
+    node ace serve --watch
 
 ### Criar Model e Migration
 
@@ -67,6 +48,17 @@ export default class extends BaseSchema {
   }
 }
 ```
+### Exemplo de chave estrangeira
+
+```js
+table
+  .integer("concessionaria_id")
+  .unsigned()
+  .references("id")
+  .inTable("concessionarias")
+  .notNullable();
+```
+
 ### Codigo de um Model
 
 ```js
@@ -94,32 +86,6 @@ export default class Curso extends BaseModel {
 }
 ```
 
-### Codigo de uma Seed
-
-```js
-import BaseSeeder from "@ioc:Adonis/Lucid/Seeder";
-import Aluno from "App/Models/Aluno";
-
-export default class extends BaseSeeder {
-  public async run() {
-    await Aluno.createMany([
-      {
-        nome: "Diogo Sales",
-        cpf: "05889054104",
-        matricula: "21114290031",
-        email: "diogodobu@gmail.com",
-        telefone: "984212998",
-        cep: 72341306,
-        logradouro: "Qr 207 conjunto 06",
-        complemento: "Casa 19",
-        numero: "19",
-        bairro: "Samambaia Norte",
-      },
-    ]);
-  }
-}
-```
-
 ### Rodar as Migration
 
     node ace migration:run
@@ -127,8 +93,8 @@ export default class extends BaseSeeder {
 ### Voltar as Migration
 
     node ace migration:rollback
+    ou
     node ace migration:refresh
-    node ace migration:refresh --seed
 
 ### Voltar as Migration ao início
 
@@ -138,10 +104,102 @@ export default class extends BaseSeeder {
 
     node ace make:seeder [Nome]
 
+## Código de uma seeder
+
+```ts
+import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import Funcionario from 'App/Models/Funcionario'
+
+export default class extends BaseSeeder {
+  public async run () {
+    await Funcionario.createMany([
+      {
+        concessionariaId:1,
+        matricula: '12345',
+        cpf:'001.002.003-04',
+        salario: 2500,
+        nome: 'Hugo',
+        email: 'hugo@gmail.com',
+        idade: 20,
+        telefone: 61991862235,
+        endereco: 'QNO 7 Conjunto F',
+      }
+    ])
+    // Write your database queries inside the run method
+  }
+}
+```
 ### Rodar uma seeder
 
     node ace db:seed
     
+### Criando um Controller.
+
+    node ace make:controller [Nome]
+
+### Codigo de uma rota com Controller
+```js
+// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+import Aluno from "App/Models/Aluno";
+
+export default class AlunosController {
+  index() {
+    return Aluno.query();
+  }
+
+  store({ request }) {
+    const dados = request.only([
+      "nome",
+      "cpf",
+      "matricula",
+      "email",
+      "telefone",
+      "cep",
+      "logradouro",
+      "complemento",
+      "numero",
+      "bairro",
+    ]);
+    return Aluno.create(dados);
+  }
+
+  show({ request }) {
+    const id = request.param("id");
+    return Aluno.findOrFail(id);
+  }
+
+  async destroy({ request }) {
+    const id = request.param("id");
+    const aluno = await Aluno.findOrFail(id);
+    return aluno.delete();
+  }
+
+  async update({ request }) {
+    const id = request.param("id");
+    const aluno = await Aluno.findOrFail(id);
+
+    const dados = request.only([
+      "nome",
+      "cpf",
+      "matricula",
+      "email",
+      "telefone",
+      "cep",
+      "logradouro",
+      "complemento",
+      "numero",
+      "bairro",
+    ]);
+
+    aluno.merge(dados).save();
+
+    return aluno;
+  }
+}
+
+```
+
 ### Criando Validator
 
     node ace make:validator [Nome]
@@ -184,3 +242,11 @@ export default class AlunoValidator {
   public messages: CustomMessages = {};
 }
 ```
+
+### Instalando Autentificador
+
+    npm i @adonisjs/auth
+
+### Configurando Autentificador
+    
+    npm ace configure @adonisjs/auth

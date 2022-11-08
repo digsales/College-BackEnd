@@ -21,7 +21,8 @@ export default class AulasController {
   async destroy({ request }) {
     const id = await request.param("id");
     const aula = await Aula.findOrFail(id);
-    return aula.delete();
+    aula.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

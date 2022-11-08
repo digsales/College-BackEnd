@@ -21,7 +21,8 @@ export default class ChamadasController {
   async destroy({ request }) {
     const id = await request.param("id");
     const chamada = await Chamada.findOrFail(id);
-    return chamada.delete();
+    chamada.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

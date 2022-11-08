@@ -21,7 +21,8 @@ export default class SemestresController {
   async destroy({ request }) {
     const id = await request.param("id");
     const semestre = await Semestre.findOrFail(id);
-    return semestre.delete();
+    semestre.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

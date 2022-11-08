@@ -21,7 +21,8 @@ export default class DisciplinasController {
   async destroy({ request }) {
     const id = await request.param("id");
     const disciplina = await Disciplina.findOrFail(id);
-    return disciplina.delete();
+    disciplina.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

@@ -27,7 +27,8 @@ export default class TurmasController {
   async destroy({ request }) {
     const id = await request.param("id");
     const turma = await Turma.findOrFail(id);
-    return turma.delete();
+    turma.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

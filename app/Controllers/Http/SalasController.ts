@@ -21,7 +21,8 @@ export default class SalasController {
   async destroy({ request }) {
     const id = await request.param("id");
     const sala = await Sala.findOrFail(id);
-    return sala.delete();
+    sala.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

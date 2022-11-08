@@ -21,7 +21,8 @@ export default class CursosController {
   async destroy({ request }) {
     const id = await request.param("id");
     const curso = await Curso.findOrFail(id);
-    return curso.delete();
+    curso.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {

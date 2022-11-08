@@ -21,7 +21,8 @@ export default class ProfessoresController {
   async destroy({ request }) {
     const id = await request.param("id");
     const professor = await Professor.findOrFail(id);
-    return professor.delete();
+    professor.delete();
+    return "Deletado com sucesso!";
   }
 
   async update({ request }) {
